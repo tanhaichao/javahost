@@ -5,7 +5,7 @@ import io.leopard.javahost.model.Host;
 import java.util.List;
 
 /**
- * Hosts文件解析.
+ * Hosts文件解析接口.
  * 
  * @author 阿海
  * 

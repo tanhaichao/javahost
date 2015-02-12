@@ -5,7 +5,7 @@ import io.leopard.javahost.model.Host;
 import java.util.List;
 
 /**
- * 虚拟DNS.
+ * 虚拟DNS接口.
  * 
  * @author 阿海
  *
