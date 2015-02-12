@@ -80,7 +80,7 @@ public abstract class AbstractDns implements Dns {
 			}
 			Host[] hosts = new Host[addresses.length];
 			for (int i = 0; i < addresses.length; i++) {
-				Inet4Address address = (Inet4Address) addresses[0];
+				Inet4Address address = (Inet4Address) addresses[i];
 				Host host = new Host();
 				host.setExpiration(expiration);
 				host.setHost(address.getHostName());

@@ -103,7 +103,6 @@ public class JavaHost {
 				list.add(ip);
 			}
 		}
-		System.out.println("list:" + list);
 		if (!list.isEmpty()) {
 			String[] ips = new String[list.size()];
 			list.toArray(ips);
