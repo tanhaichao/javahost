@@ -136,7 +136,7 @@ public class JavaHost {
 	}
 
 	/**
-	 * 根据域名查询IP(查询范围:包括hosts文件、DNS服务器、虚拟DNS).
+	 * 根据域名查询IP，多IP时随机返回1个(查询范围:包括hosts文件、DNS服务器、虚拟DNS).
 	 * 
 	 * @param host
 	 *            域名
@@ -158,6 +158,24 @@ public class JavaHost {
 			int random = new Random().nextInt(addresses.length);
 			return addresses[random].getHostAddress();
 		}
+	}
+
+	/**
+	 * 根据域名查询IP，多IP时只返回第一个(查询范围:包括hosts文件、DNS服务器、虚拟DNS).
+	 * 
+	 * @param host
+	 *            域名
+	 * @return IP
+	 */
+	public static String getIp(String host) {
+		InetAddress address;
+		try {
+			address = InetAddress.getByName(host);
+		}
+		catch (UnknownHostException e) {
+			return null;
+		}
+		return address.getHostAddress();
 	}
 
 	/**

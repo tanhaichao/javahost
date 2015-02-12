@@ -52,9 +52,10 @@ public class DnsImplTest {
 			System.out.println(host);
 		}
 		System.out.println("######ping#######");
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; i < 20; i++) {
 			String ip = JavaHost.queryIp("javahost.leopard.io");
-			System.out.println("ping host:javahost.leopard.io" + " 返回的ip:" + ip);
+			String ip2 = JavaHost.getIp("javahost.leopard.io");
+			System.out.println("ping host:javahost.leopard.io" + " 返回的ip:" + ip + " ip2:" + ip2);
 		}
 	}
 
