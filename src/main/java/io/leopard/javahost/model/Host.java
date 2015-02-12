@@ -1,5 +1,11 @@
 package io.leopard.javahost.model;
 
+/**
+ * Host Model.
+ * 
+ * @author 阿海
+ *
+ */
 public class Host {
 	private String host;
 	private String ip;
