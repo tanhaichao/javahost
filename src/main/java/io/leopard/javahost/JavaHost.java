@@ -15,7 +15,7 @@ import java.util.Properties;
 import java.util.Random;
 
 /**
- * JavaHost(JVM虚拟DNS)接口 util类.
+ * JavaHost(JVM虚拟DNS)接口 util类.<br/>
  * 
  * IP查找顺序:虚拟DNS -> hosts文件 -> DNS服务器.
  * 
