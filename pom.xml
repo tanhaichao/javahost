@@ -1,12 +1,33 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<parent>
-		<groupId>io.leopard.burrow</groupId>
-		<artifactId>burrow</artifactId>
-		<version>0.0.5-SNAPSHOT</version>
-	</parent>
 	<groupId>io.leopard</groupId>
 	<artifactId>javahost</artifactId>
+
+	<name>JavaHost</name>
+	<description>JVM虚拟DNS，开发期间可以省去hosts文件配置</description>
+	<url>https://github.com/tanhaichao/javahost</url>
+	<inceptionYear>2014</inceptionYear>
+
+	<parent>
+		<groupId>io.leopard.depend</groupId>
+		<artifactId>depend</artifactId>
+		<version>0.0.8</version>
+	</parent>
+
+	<scm>
+		<url>https://github.com/tanhaichao/javahost</url>
+		<connection>scm:svn:https://github.com/tanhaichao/javahost/trunk</connection>
+		<developerConnection>scm:svn:https://github.com/tanhaichao/javahost/trunk</developerConnection>
+	</scm>
+
+	<issueManagement>
+		<system>GitHub Issues</system>
+		<url>https://github.com/tanhaichao/javahost/issues</url>
+	</issueManagement>
+
+
+
+
 
 	<dependencies>
 		<dependency>
@@ -16,3 +37,8 @@
 		</dependency>
 	</dependencies>
 </project>
+
+
+
+
+
