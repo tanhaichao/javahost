@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Properties;
+import java.util.Random;
 
 /**
  * 虚拟DNS util类.
@@ -142,14 +143,21 @@ public class JavaHost {
 	 * @return IP
 	 */
 	public static String queryIp(String host) {
-		InetAddress inetAddress;
+		InetAddress[] addresses;
 		try {
-			inetAddress = InetAddress.getByName(host);
+			addresses = InetAddress.getAllByName(host);
 		}
 		catch (UnknownHostException e) {
 			return null;
 		}
-		return inetAddress.getHostAddress();
+		if (addresses.length == 1) {
+			return addresses[0].getHostAddress();
+		}
+		else {
+			// 多IP时，随机返回一个
+			int random = new Random().nextInt(addresses.length);
+			return addresses[random].getHostAddress();
+		}
 	}
 
 	/**

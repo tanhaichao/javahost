@@ -16,16 +16,31 @@ public interface Dns {
 	 * 设置域名解析.
 	 * 
 	 * @param host
+	 *            域名
 	 * @param ip
+	 *            IP数组
 	 * @return
 	 */
 	boolean update(String host, String ip);
 
 	/**
+	 * 设置域名解析.
+	 * 
+	 * @param host
+	 *            域名
+	 * @param ips
+	 *            IP数组
+	 * @return
+	 */
+	boolean update(String host, String[] ips);
+
+	/**
 	 * 删除域名解析.
 	 * 
 	 * @param host
+	 *            域名
 	 * @param ip
+	 *            IP数组
 	 * @return
 	 */
 	boolean remove(String host);
@@ -54,4 +69,12 @@ public interface Dns {
 	 * @return
 	 */
 	List<Host> list();
+
+	/**
+	 * 获取所有虚拟DNS记录.
+	 * 
+	 * @param host域名
+	 * @return
+	 */
+	List<Host> list(String host);
 }

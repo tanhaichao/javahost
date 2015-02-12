@@ -59,7 +59,7 @@ public abstract class AbstractDns implements Dns {
 	// InetAddress[] addresses;
 	// long expiration;
 	// }
-	protected Host toHost(Object entry) {
+	protected Host[] toHost(Object entry) {
 		if (entry == null) {
 			throw new NullPointerException("entry不能为空.");
 		}
@@ -78,15 +78,16 @@ public abstract class AbstractDns implements Dns {
 				field.setAccessible(true);
 				addresses = (InetAddress[]) field.get(entry);
 			}
-			if (addresses.length > 1) {
-				throw new RuntimeException("怎么会有多条记录[" + addresses.length + "]?");
+			Host[] hosts = new Host[addresses.length];
+			for (int i = 0; i < addresses.length; i++) {
+				Inet4Address address = (Inet4Address) addresses[0];
+				Host host = new Host();
+				host.setExpiration(expiration);
+				host.setHost(address.getHostName());
+				host.setIp(address.getHostAddress());
+				hosts[i] = host;
 			}
-			Inet4Address address = (Inet4Address) addresses[0];
-			Host host = new Host();
-			host.setExpiration(expiration);
-			host.setHost(address.getHostName());
-			host.setIp(address.getHostAddress());
-			return host;
+			return hosts;
 		}
 		catch (Exception e) {
 			throw new RuntimeException(e.getMessage(), e);
@@ -103,20 +104,21 @@ public abstract class AbstractDns implements Dns {
 	// InetAddress[] addresses;
 	// long expiration;
 	// }
-	protected Object createCacheEntry(String host, String ip) {
+	protected Object createCacheEntry(String host, String[] ips) {
 		try {
 			long expiration = System.currentTimeMillis() + EXPIRATION;// 10年失效
-
-			InetAddress[] address = new InetAddress[] { InetAddress.getByAddress(host, toBytes(ip)) };
+			InetAddress[] addresses = new InetAddress[ips.length];
+			for (int i = 0; i < addresses.length; i++) {
+				addresses[i] = InetAddress.getByAddress(host, toBytes(ips[i]));
+			}
 			String className = "java.net.InetAddress$CacheEntry";
 			Class<?> clazz = Class.forName(className);
 			Constructor<?> constructor = clazz.getDeclaredConstructors()[0];
 			constructor.setAccessible(true);
-			return constructor.newInstance(address, expiration);
+			return constructor.newInstance(addresses, expiration);
 		}
 		catch (Exception e) {
 			throw new RuntimeException(e.getMessage(), e);
 		}
 	}
-
 }
