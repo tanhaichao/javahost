@@ -6,6 +6,7 @@ import io.leopard.javahost.model.Host;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -58,6 +59,19 @@ public class JavaHost {
 	/**
 	 * 更新虚拟DNS域名指向.
 	 * 
+	 * @param host
+	 *            域名
+	 * @param ip
+	 *            IP数组
+	 * @return
+	 */
+	public static boolean updateVirtualDns(String host, String[] ips) {
+		return dns.update(host, ips);
+	}
+
+	/**
+	 * 更新虚拟DNS域名指向.
+	 * 
 	 * @param properties
 	 *            key为域名，value为IP地址
 	 * 
@@ -73,15 +87,29 @@ public class JavaHost {
 			}
 			String host = ((String) entry.getKey()).trim();
 			String ip = ((String) entry.getValue()).trim();
-			if (isValidIp(ip)) {
-				boolean isLocalHost = JavaHost.isLocalHost(host);
-				if (!isLocalHost) {
-					JavaHost.updateVirtualDns(host, ip);
-					count++;
-				}
+
+			if (!isLocalHost(host)) {
+				count += updateVirtualDnsByStrings(host, ip);
 			}
 		}
 		return count;
+	}
+
+	protected static int updateVirtualDnsByStrings(String host, String ipList) {
+		List<String> list = new ArrayList<String>();
+		for (String ip : ipList.split(",")) {
+			ip = ip.trim();
+			if (isValidIp(ip)) {
+				list.add(ip);
+			}
+		}
+		System.out.println("list:" + list);
+		if (!list.isEmpty()) {
+			String[] ips = new String[list.size()];
+			list.toArray(ips);
+			JavaHost.updateVirtualDns(host, ips);
+		}
+		return list.size();
 	}
 
 	/**
@@ -101,12 +129,8 @@ public class JavaHost {
 			Entry<String, String> entry = iterator.next();
 			String host = entry.getKey().trim();
 			String ip = entry.getValue().trim();
-			if (isValidIp(ip)) {
-				boolean isLocalHost = JavaHost.isLocalHost(host);
-				if (!isLocalHost) {
-					JavaHost.updateVirtualDns(host, ip);
-					count++;
-				}
+			if (!isLocalHost(host)) {
+				count += updateVirtualDnsByStrings(host, ip);
 			}
 		}
 		return count;
@@ -150,6 +174,7 @@ public class JavaHost {
 		catch (UnknownHostException e) {
 			return null;
 		}
+		// System.out.println("len:" + addresses.length);
 		if (addresses.length == 1) {
 			return addresses[0].getHostAddress();
 		}
