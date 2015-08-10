@@ -5,7 +5,6 @@ import io.leopard.javahost.model.Host;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
-import java.net.Inet4Address;
 import java.net.InetAddress;
 import java.util.Map;
 
@@ -80,8 +79,7 @@ public abstract class AbstractDns implements Dns {
 			}
 			Host[] hosts = new Host[addresses.length];
 			for (int i = 0; i < addresses.length; i++) {
-//				System.out.println("addresses:"+addresses[i].getClass().getName());
-				Inet4Address address = (Inet4Address) addresses[i];
+				InetAddress address = (InetAddress) addresses[i];
 				Host host = new Host();
 				host.setExpiration(expiration);
 				host.setHost(address.getHostName());
