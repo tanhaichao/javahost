@@ -1,15 +1,11 @@
 package io.leopard.javahost;
 
-import io.leopard.javahost.model.Host;
-
 import java.net.Inet6Address;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
-import org.junit.Assert;
 import org.junit.Test;
 
 public class Ipv6Test {
