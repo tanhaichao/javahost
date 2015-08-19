@@ -36,17 +36,17 @@ public abstract class AbstractDns implements Dns {
 		}
 	}
 
-	private byte[] toBytes(String ip) {
-		byte[] addr = new byte[4];
-		{
-			String[] strs = ip.split("\\.");
-			for (int i = 0; i < strs.length; i++) {
-				// System.out.println("strs[i]:" + strs[i]);
-				addr[i] = (byte) Integer.parseInt(strs[i]);
-			}
-		}
-		return addr;
-	}
+	// private byte[] toBytes(String ip) {
+	// byte[] addr = new byte[4];
+	// {
+	// String[] strs = ip.split("\\.");
+	// for (int i = 0; i < strs.length; i++) {
+	// // System.out.println("strs[i]:" + strs[i]);
+	// addr[i] = (byte) Integer.parseInt(strs[i]);
+	// }
+	// }
+	// return addr;
+	// }
 
 	// static final class CacheEntry {
 	//
@@ -108,7 +108,8 @@ public abstract class AbstractDns implements Dns {
 			long expiration = System.currentTimeMillis() + EXPIRATION;// 10年失效
 			InetAddress[] addresses = new InetAddress[ips.length];
 			for (int i = 0; i < addresses.length; i++) {
-				addresses[i] = InetAddress.getByAddress(host, toBytes(ips[i]));
+				// addresses[i] = InetAddress.getByAddress(host, toBytes(ips[i]));
+				addresses[i] = InetAddress.getByAddress(host, InetAddress.getByName(ips[i]).getAddress());
 			}
 			String className = "java.net.InetAddress$CacheEntry";
 			Class<?> clazz = Class.forName(className);

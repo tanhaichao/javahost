@@ -101,9 +101,11 @@ public class JavaHost {
 		List<String> list = new ArrayList<String>();
 		for (String ip : ipList.split(",")) {
 			ip = ip.trim();
-			if (isValidIp(ip)) {
+			// if (isValidIp(ip)) {
+			if (ip.length() > 0) {
 				list.add(ip);
 			}
+			// }
 		}
 		if (!list.isEmpty()) {
 			String[] ips = new String[list.size()];
@@ -137,28 +139,28 @@ public class JavaHost {
 		return count;
 	}
 
-	/**
-	 * 判断是否合法IP.
-	 * 
-	 * @param ip
-	 * @return
-	 */
-	protected static boolean isValidIp(String ip) {
-		if (ip == null || ip.length() == 0) {
-			return false;
-		}
-		String[] strs = ip.split("\\.");
-		if (strs.length != 4) {
-			return false;
-		}
-		for (int i = 0; i < strs.length; i++) {
-			int num = Integer.parseInt(strs[i]);
-			if (num > 255) {
-				return false;
-			}
-		}
-		return true;
-	}
+	// /**
+	// * 判断是否合法IP.
+	// *
+	// * @param ip
+	// * @return
+	// */
+	// protected static boolean isValidIp(String ip) {
+	// if (ip == null || ip.length() == 0) {
+	// return false;
+	// }
+	// String[] strs = ip.split("\\.");
+	// if (strs.length != 4) {
+	// return false;
+	// }
+	// for (int i = 0; i < strs.length; i++) {
+	// int num = Integer.parseInt(strs[i]);
+	// if (num > 255) {
+	// return false;
+	// }
+	// }
+	// return true;
+	// }
 
 	/**
 	 * 根据域名查询IP，多IP时随机返回1个(查询范围:包括hosts文件、DNS服务器、虚拟DNS).

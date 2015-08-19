@@ -21,7 +21,7 @@ public class JavaHostTest {
 		// Assert.assertTrue(JavaHost.isValidIp("255.255.255.255"));
 		// Assert.assertFalse(JavaHost.isValidIp("255.255.255.256"));
 		// Assert.assertFalse(JavaHost.isValidIp("255.255.255"));
-		Assert.assertFalse(JavaHost.isValidIp("255.255.255."));
+		// Assert.assertFalse(JavaHost.isValidIp("255.255.255."));
 	}
 
 	@Test
