@@ -33,6 +33,15 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
+
+
+	<distributionManagement>
+		<snapshotRepository>
+			<id>sonatype-nexus-snapshots</id>
+			<name>Sonatype Nexus Snapshots</name>
+			<url>http://leopard.io/nexus/content/repositories/framework-snapshots/</url>
+		</snapshotRepository>
+	</distributionManagement>
 </project>
 
 
