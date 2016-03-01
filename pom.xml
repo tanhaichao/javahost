@@ -12,7 +12,7 @@
 	<parent>
 		<groupId>io.leopard.depend</groupId>
 		<artifactId>depend</artifactId>
-		<version>0.0.10</version>
+		<version>0.1-SNAPSHOT</version>
 	</parent>
 
 	<scm>
@@ -34,14 +34,6 @@
 		</dependency>
 	</dependencies>
 
-
-	<distributionManagement>
-		<snapshotRepository>
-			<id>sonatype-nexus-snapshots</id>
-			<name>Sonatype Nexus Snapshots</name>
-			<url>http://leopard.io/nexus/content/repositories/framework-snapshots/</url>
-		</snapshotRepository>
-	</distributionManagement>
 </project>
 
 
