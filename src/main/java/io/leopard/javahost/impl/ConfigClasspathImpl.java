@@ -1,5 +1,6 @@
 package io.leopard.javahost.impl;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -12,14 +13,14 @@ import io.leopard.javahost.Config;
 public class ConfigClasspathImpl implements Config {
 
 	@Override
-	public InputStream find() {
+	public InputStream find() throws IOException {
 		ResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
 		Resource[] resources;
 		try {
 			resources = resolver.getResources("classpath*:/dev/dns.properties");
 		}
 		catch (IOException e) {
-			return null;
+			throw new FileNotFoundException("classpath*:/dev/dns.properties");
 		}
 		for (Resource resource : resources) {
 			try {
@@ -30,7 +31,7 @@ public class ConfigClasspathImpl implements Config {
 				throw new RuntimeException(e.getMessage(), e);
 			}
 		}
-		return null;
+		throw new FileNotFoundException("classpath*:/dev/dns.properties");
 	}
 
 }

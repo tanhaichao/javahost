@@ -1,5 +1,6 @@
 package io.leopard.javahost.impl;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
@@ -12,7 +13,7 @@ import io.leopard.javahost.Config;
 public class ConfigImpl implements Config {
 
 	@Override
-	public InputStream find() {
+	public InputStream find() throws IOException {
 		InputStream input;
 		try {
 			input = this.findInternal();
@@ -25,6 +26,7 @@ public class ConfigImpl implements Config {
 				input = this.findByClasspath();
 			}
 			catch (Exception e) {
+				throw new FileNotFoundException("classpath*:/dev/dns.properties");
 			}
 		}
 		return input;
@@ -44,10 +46,10 @@ public class ConfigImpl implements Config {
 			url = urls.nextElement();
 		}
 		else {
-			// throw new FileNotFoundException("classpath:/dev/dns.properties");
-			String message = "host文件[classpath:/dev/dns.properties]不存在.";
-			System.out.println(message);
-			return null;
+			throw new FileNotFoundException("classpath:/dev/dns.properties");
+			// String message = "host文件[classpath:/dev/dns.properties]不存在.";
+			// System.out.println(message);
+			// return null;
 		}
 		URLConnection conn = null;
 		try {
