@@ -34,7 +34,7 @@ public class ConfigImpl implements Config {
 
 	protected InputStream findByClasspath() throws IOException, ClassNotFoundException, InstantiationException, IllegalAccessException {
 		@SuppressWarnings("unchecked")
-		Class<Config> clazz = (Class<Config>) Class.forName("ConfigClasspathImpl");
+		Class<Config> clazz = (Class<Config>) Class.forName("io.leopard.javahost.impl.ConfigClasspathImpl");
 		Config config = clazz.newInstance();
 		return config.find();
 	}

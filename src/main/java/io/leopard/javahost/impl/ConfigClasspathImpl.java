@@ -20,6 +20,7 @@ public class ConfigClasspathImpl implements Config {
 			resources = resolver.getResources("classpath*:/dev/dns.properties");
 		}
 		catch (IOException e) {
+			e.printStackTrace();
 			throw new FileNotFoundException("classpath*:/dev/dns.properties");
 		}
 		for (Resource resource : resources) {
@@ -28,6 +29,7 @@ public class ConfigClasspathImpl implements Config {
 				return is;
 			}
 			catch (IOException e) {
+				e.printStackTrace();
 				throw new RuntimeException(e.getMessage(), e);
 			}
 		}

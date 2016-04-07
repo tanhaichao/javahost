@@ -27,6 +27,7 @@ public class AutoUnitRunnable implements Runnable {
 		catch (IOException e) {
 			String message = "host文件[classpath:/dev/dns.properties]不存在.";
 			System.out.println(message);
+			e.printStackTrace();
 		}
 	}
 }
