@@ -29,5 +29,4 @@ public class AutoUnitRunnable implements Runnable {
 			System.out.println(message);
 		}
 	}
-
 }
