@@ -16,6 +16,7 @@ public class AutoUnitRunnable implements Runnable {
 
 	@Override
 	public void run() {
+		new Exception().printStackTrace();
 		try {
 			Config config = new ConfigImpl();
 			InputStream input = config.find();
