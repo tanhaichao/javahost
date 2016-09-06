@@ -2,7 +2,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>io.leopard</groupId>
 	<artifactId>javahost</artifactId>
-	<version>0.9.7-SNAPSHOT</version>
+	<version>0.9.7</version>
 
 	<name>JavaHost</name>
 	<description>JVM虚拟DNS，开发期间可以省去hosts文件配置</description>
@@ -16,9 +16,9 @@
 	</parent>
 
 	<scm>
-		<url>https://github.com/tanhaichao/javahost</url>
-		<connection>scm:svn:https://github.com/tanhaichao/javahost/trunk</connection>
-		<developerConnection>scm:svn:https://github.com/tanhaichao/javahost/trunk</developerConnection>
+		<url>https://github.com/tanhaichao/javahost/tags/javahost-0.9.7</url>
+		<connection>scm:svn:https://github.com/tanhaichao/javahost/tags/javahost-0.9.7</connection>
+		<developerConnection>scm:svn:https://github.com/tanhaichao/javahost/tags/javahost-0.9.7</developerConnection>
 	</scm>
 
 	<issueManagement>
