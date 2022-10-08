@@ -59,7 +59,7 @@ public abstract class AbstractHosts implements Hosts {
 			return list;
 		}
 
-		String[] hosts = line.split("\\s+");
+		String[] hosts = line.split("\\s+|\\u00A0+");
 		if (hosts.length < 2) {
 			throw new RuntimeException("非法host记录[" + line + "].");
 		}
